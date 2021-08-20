@@ -1,3 +1,4 @@
+language: generic
 sudo: required #we need super user permissions
 language: generic
 services: #what do we need in the container
@@ -7,3 +8,13 @@ before_install:
   - docker build  -t schoenja/docker-react -f Dockerfile.dev . #force and set build context
 script:
   - docker run -e CI=true schoenja/docker-react npm run test
+deploy:
+  on:
+    branch: master
+#  provider: elasticbeanstalk
+#  region: "eu-central-1"
+#  app: "docker-react"
+#  env: "Docker-env"
+#  bucket_name: "..."
+#  bucket-path: "..."
+#  access_key_id: $AWS_ACCESS_KEY
