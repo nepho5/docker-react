@@ -1,0 +1,9 @@
+sudo: required #we need super user permissions
+language: generic
+services: #what do we need in the container
+  - docker 
+
+before_install:
+  - docker build  -t schoenja/docker-react -f Dockerfile.dev . #force and set build context
+script:
+  - docker run -e CI=true schoenja/docker-react npm run test
